@@ -265,6 +265,30 @@
             background-clip: text;
         }
 
+        /* Meals Special Styling */
+        .meals-card {
+            position: relative;
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB) !important;
+            border: 2px solid #2196F3 !important;
+            box-shadow: 0 15px 35px rgba(33, 150, 243, 0.15) !important;
+        }
+        .meals-badge {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #2196F3;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+        .meals-card h3 {
+            color: #1976D2 !important;
+            font-size: 1.25rem !important;
+        }
+
         .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; border-top: 1px solid var(--bg); padding-top: 15px; }
         .price { font-weight: 900; font-size: 1.4rem; color: var(--primary); transition: 0.3s; }
         
@@ -462,6 +486,7 @@
             <button class="tab-btn active" onclick="filterItems('crepe', this)">الكريبات</button>
             <button class="tab-btn" onclick="filterItems('syrian', this)">السوري</button>
             <button class="tab-btn" onclick="filterItems('special', this)">سبيشال</button>
+            <button class="tab-btn" onclick="filterItems('meals', this)">الواجبات 🍽️</button>
             <button class="tab-btn" onclick="filterItems('offers', this)">العروض 🔥</button>
             <button class="tab-btn" onclick="filterItems('addons', this)">الإضافات ➕</button>
         </div>
@@ -529,6 +554,19 @@
             // سبيشال
             { id: 'sp1', category: 'special', name: 'المستر سبيشال', price: 95, desc: '' },
 
+            // الواجبات الجديدة
+            { 
+                id: 'm1', 
+                category: 'meals', 
+                name: 'وجبة شاورما عربى', 
+                variants: [
+                    {size: 'سنجل', price: 95}, 
+                    {size: 'دبل', price: 160}, 
+                    {size: 'تربل', price: 250}
+                ], 
+                desc: '' 
+            },
+
             // العروض
             { id: 'o1', category: 'offers', name: 'عرض السوري الفاخر', price: 100, desc: '(شاورما سوري + بطاطس سوري + ستربس سوري)', isOffer: true },
 
@@ -580,6 +618,9 @@
                 } else if (item.isAddon) {
                     cardClass = 'addons-card';
                     badgeHtml = '<div class="addons-badge">إضافة ➕</div>';
+                } else if (item.category === 'meals') {
+                    cardClass = 'meals-card';
+                    badgeHtml = '<div class="meals-badge">وجبة كاملة 🍽️</div>';
                 }
 
                 return `
@@ -648,7 +689,7 @@
                     name: cartItemName, 
                     price: cartItemPrice, 
                     qty: 1,
-                    type: product.isAddon ? 'إضافة' : 'طلب'
+                    type: product.isAddon ? 'إضافة' : (product.category === 'meals' ? 'وجبة' : 'طلب')
                 });
             }
             
