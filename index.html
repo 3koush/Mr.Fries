@@ -210,6 +210,61 @@
         }
         .size-option input:checked + span { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
 
+        /* Addons Special Styling */
+        .addons-card {
+            background: linear-gradient(135deg, #E8F5E8, #F0F8F0) !important;
+            border: 2px solid #4CAF50 !important;
+            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.1) !important;
+        }
+        .addons-badge {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #4CAF50;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+        .addons-card h3 {
+            color: #2E7D32 !important;
+            font-size: 1.25rem !important;
+        }
+
+        /* Offer Special Styling */
+        .offer-card {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-light), #FFE8D9) !important;
+            border: 2px solid var(--primary) !important;
+            box-shadow: 0 20px 40px rgba(255, 94, 0, 0.15) !important;
+        }
+        .offer-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 900;
+            box-shadow: 0 5px 15px rgba(255, 94, 0, 0.4);
+        }
+        .offer-card h3 {
+            color: var(--primary) !important;
+            font-size: 1.3rem !important;
+        }
+        .offer-card .price {
+            font-size: 1.6rem !important;
+            color: var(--dark) !important;
+            background: var(--primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; border-top: 1px solid var(--bg); padding-top: 15px; }
         .price { font-weight: 900; font-size: 1.4rem; color: var(--primary); transition: 0.3s; }
         
@@ -236,7 +291,7 @@
             /* Floating Call Button Move Up */
             .floating-actions { bottom: 90px; right: 20px; }
 
-            /* Mobile Sticky Cart Bar - Updated colors */
+            /* Mobile Sticky Cart Bar */
             .mobile-cart-bar {
                 display: flex;
                 justify-content: space-between;
@@ -246,17 +301,15 @@
                 left: 5%;
                 right: 5%;
                 width: 90%;
-                background: var(--primary); /* التعديل هنا: برتقالي بدل أسود */
+                background: var(--primary);
                 color: white;
                 padding: 15px 25px;
                 border-radius: 20px;
                 z-index: 998;
-                box-shadow: 0 10px 30px rgba(255, 94, 0, 0.3); /* التعديل هنا: ظل برتقالي */
+                box-shadow: 0 10px 30px rgba(255, 94, 0, 0.3);
                 cursor: pointer;
             }
             .m-cart-info { font-weight: bold; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;}
-            
-            /* التعديل هنا: خلفية الدائرة بيضاء والرقم برتقالي */
             .m-cart-info .badge { 
                 background: white; 
                 color: var(--primary); 
@@ -265,8 +318,6 @@
                 font-size: 0.9rem;
                 font-weight: 900;
             }
-            
-            /* التعديل هنا: لون إجمالي السعر أبيض */
             .m-cart-total { font-weight: 900; font-size: 1.2rem; color: white; }
 
             /* Sidebar to Bottom Sheet */
@@ -313,6 +364,11 @@
                 color: var(--text);
             }
         }
+
+        @media (max-width: 480px) {
+            .tabs { gap: 10px; }
+            .tab-btn { padding: 8px 20px; font-size: 0.9rem; }
+        }
     </style>
 </head>
 <body>
@@ -355,13 +411,29 @@
             <select id="cust-region" class="form-input" onchange="updateTotals()">
                 <option value="" data-price="0">اختر المنطقة...</option>
                 <option value="الشؤون" data-price="15">الشؤون</option>
-                <option value="المساكن" data-price="20">المساكن</option>
-                <option value="عمرو" data-price="25">عمرو</option>
-                <option value="الاشارة" data-price="25">الاشارة</option>
-                <option value="السيد" data-price="20">السيد</option>
-                <option value="قنا الجديدة" data-price="35">قنا الجديدة</option>
-                <option value="المدينة" data-price="25">المدينة</option>
-                <option value="حوض عشرة" data-price="25">حوض عشرة</option>
+                <option value="دردشة" data-price="15">دردشة</option>
+                <option value="التجنيد" data-price="20">التجنيد</option>
+                <option value="مساكن" data-price="20">مساكن</option>
+                <option value="سكن البنات داخل الجامعة" data-price="20">سكن البنات داخل الجامعة</option>
+                <option value="مستشفى الأورام" data-price="20">مستشفى الأورام</option>
+                <option value="شارع ال16" data-price="20">شارع الـ 16</option>
+                <option value="شارع الشيخ محسن" data-price="20">شارع الشيخ محسن</option>
+                <option value="السيد" data-price="25">السيد</option>
+                <option value="بعد البنك" data-price="25">بعد البنك</option>
+                <option value="كلية الطب" data-price="25">كلية الطب</option>
+                <option value="الحصواية" data-price="25">الحصواية</option>
+                <option value="النحال" data-price="25">النحال</option>
+                <option value="المحطة" data-price="30">المحطة</option>
+                <option value="مدينة الزهراء" data-price="30">مدينة الزهراء</option>
+                <option value="مستشفى الجامعة" data-price="30">مستشفى الجامعة</option>
+                <option value="المعنا" data-price="30">المعنا</option>
+                <option value="بنزيون" data-price="35">بنزيون</option>
+                <option value="المستشفى العام" data-price="35">المستشفى العام</option>
+                <option value="عمر أفندي" data-price="35">عمر أفندي</option>
+                <option value="الدولفن" data-price="35">الدولفن</option>
+                <option value="مستشفى المعبر" data-price="40">مستشفى المعبر</option>
+                <option value="مستشفى الصدر" data-price="40">مستشفى الصدر</option>
+                <option value="قنا الجديدة" data-price="50">قنا الجديدة</option>
             </select>
 
             <input type="text" id="cust-address" class="form-input" placeholder="العنوان بالتفصيل">
@@ -390,6 +462,8 @@
             <button class="tab-btn active" onclick="filterItems('crepe', this)">الكريبات</button>
             <button class="tab-btn" onclick="filterItems('syrian', this)">السوري</button>
             <button class="tab-btn" onclick="filterItems('special', this)">سبيشال</button>
+            <button class="tab-btn" onclick="filterItems('offers', this)">العروض 🔥</button>
+            <button class="tab-btn" onclick="filterItems('addons', this)">الإضافات ➕</button>
         </div>
 
         <div class="menu-grid" id="menu-container"></div>
@@ -453,13 +527,30 @@
             { id: 's14', category: 'syrian', name: 'فاهيتا فراخ', variants: [{size: 'وسط', price: 55}, {size: 'كبير', price: 70}], desc: '' },
 
             // سبيشال
-            { id: 'sp1', category: 'special', name: 'المستر سبيشال', price: 95, desc: '' }
+            { id: 'sp1', category: 'special', name: 'المستر سبيشال', price: 95, desc: '' },
+
+            // العروض
+            { id: 'o1', category: 'offers', name: 'عرض السوري الفاخر', price: 100, desc: '(شاورما سوري + بطاطس سوري + ستربس سوري)', isOffer: true },
+
+            // الإضافات
+            { id: 'a1', category: 'addons', name: 'إضافة رول', price: 10, desc: '', isAddon: true },
+            { id: 'a2', category: 'addons', name: 'إضافة مودزريلا', price: 15, desc: '', isAddon: true },
+            { id: 'a3', category: 'addons', name: 'إضافة رومي', price: 20, desc: '', isAddon: true },
+            { id: 'a4', category: 'addons', name: 'إضافة شيدر', price: 20, desc: '', isAddon: true },
+            { id: 'a5', category: 'addons', name: 'إضافة كونو', price: 25, desc: '', isAddon: true },
+            { id: 'a6', category: 'addons', name: 'كاتشب', price: 5, desc: '', isAddon: true },
+            { id: 'a7', category: 'addons', name: 'تومية', price: 10, desc: '', isAddon: true },
+            { id: 'a8', category: 'addons', name: 'تومية سبايسي', price: 10, desc: '', isAddon: true },
+            { id: 'a9', category: 'addons', name: 'صوص باربكيو', price: 20, desc: '', isAddon: true },
+            { id: 'a10', category: 'addons', name: 'صوص شيدر', price: 20, desc: '', isAddon: true },
+            { id: 'a11', category: 'addons', name: 'باكت بطاطس', price: 15, desc: '', isAddon: true }
         ];
 
         let cart = [];
 
         function renderMenu(items) {
             const container = document.getElementById('menu-container');
+            
             container.innerHTML = items.map(item => {
                 let priceDisplay = '';
                 let sizeHtml = '';
@@ -470,18 +561,30 @@
                         <div class="size-selector">
                             ${item.variants.map((v, index) => `
                                 <label class="size-option">
-                                    <input type="radio" name="size_${item.id}" value="${index}" ${index === 0 ? 'checked' : ''} onchange="document.getElementById('price_${item.id}').innerText = '${v.price} ج'">
+                                    <input type="radio" name="size_${item.id}" value="${index}" ${index === 0 ? 'checked' : ''} onchange="updateProductPrice('${item.id}', ${v.price})">
                                     <span>${v.size}</span>
                                 </label>
                             `).join('')}
                         </div>
                     `;
                 } else {
-                    priceDisplay = `<span class="price">${item.price} ج</span>`;
+                    priceDisplay = `<span class="price" id="price_${item.id}">${item.price} ج</span>`;
+                }
+
+                let cardClass = '';
+                let badgeHtml = '';
+                
+                if (item.isOffer) {
+                    cardClass = 'offer-card';
+                    badgeHtml = '<div class="offer-badge">عرض خاص 🔥</div>';
+                } else if (item.isAddon) {
+                    cardClass = 'addons-card';
+                    badgeHtml = '<div class="addons-badge">إضافة ➕</div>';
                 }
 
                 return `
-                    <div class="product-card">
+                    <div class="product-card ${cardClass}" data-product-id="${item.id}">
+                        ${badgeHtml}
                         <div>
                             <h3>${item.name}</h3>
                             ${item.desc ? `<p>${item.desc}</p>` : ''}
@@ -498,23 +601,35 @@
             }).join('');
         }
 
+        function updateProductPrice(productId, price) {
+            document.getElementById(`price_${productId}`).innerText = price + ' ج';
+        }
+
         function filterItems(cat, btn) {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            renderMenu(menu.filter(i => i.category === cat));
+            
+            const filteredItems = menu.filter(i => i.category === cat);
+            renderMenu(filteredItems);
         }
 
-        function addToCart(id) {
-            const product = menu.find(i => i.id === id);
+        function addToCart(productId) {
+            const product = menu.find(i => i.id === productId);
+            if (!product) return;
+
             let cartItemName = product.name;
             let cartItemPrice = product.price;
-            let cartItemId = product.id; 
+            let cartItemId = product.id;
 
+            // Check size variant
             if (product.variants) {
-                const radios = document.getElementsByName(`size_${id}`);
+                const radios = document.getElementsByName(`size_${productId}`);
                 let selectedIndex = 0;
                 for (let i = 0; i < radios.length; i++) {
-                    if (radios[i].checked) { selectedIndex = i; break; }
+                    if (radios[i].checked) { 
+                        selectedIndex = i; 
+                        break; 
+                    }
                 }
                 const selectedVariant = product.variants[selectedIndex];
                 cartItemName = `${product.name} (${selectedVariant.size})`;
@@ -526,9 +641,17 @@
             
             if (existingItem) {
                 existingItem.qty += 1;
+                existingItem.name = cartItemName;
             } else {
-                cart.push({ cartId: cartItemId, name: cartItemName, price: cartItemPrice, qty: 1 });
+                cart.push({ 
+                    cartId: cartItemId, 
+                    name: cartItemName, 
+                    price: cartItemPrice, 
+                    qty: 1,
+                    type: product.isAddon ? 'إضافة' : 'طلب'
+                });
             }
+            
             updateCartUI();
         }
 
@@ -552,7 +675,7 @@
                     <div class="cart-item">
                         <div class="cart-item-info">
                             <h4>${item.name} <span class="item-qty">x${item.qty}</span></h4>
-                            <span>${item.price * item.qty} ج</span>
+                            <span>${item.price * item.qty} ج ${item.type ? `(${item.type})` : ''}</span>
                         </div>
                         <div class="qty-controls">
                             <button class="qty-btn" onclick="changeQty('${item.cartId}', 1)">+</button>
@@ -596,7 +719,7 @@
             msg += `الطلبات:\n`;
             
             cart.forEach(item => {
-                msg += `- ${item.name} (عدد: ${item.qty}) = ${item.price * item.qty} ج\n`;
+                msg += `- ${item.name} (عدد: ${item.qty}) = ${item.price * item.qty} ج ${item.type ? `(${item.type})` : ''}\n`;
             });
             
             const foodTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
@@ -611,6 +734,7 @@
             window.open(url, '_blank');
         }
 
+        // Initial render
         renderMenu(menu.filter(i => i.category === 'crepe'));
         updateCartUI();
     </script>
