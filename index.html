@@ -298,8 +298,8 @@
         .form-input { width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); font-size: 0.85rem; outline: none; transition: 0.3s; }
         .form-input:focus { border-color: var(--primary); background: white; }
 
-        .btn-confirm { background: var(--primary); color: white; width: 100%; padding: 15px; border: none; border-radius: 15px; font-weight: 800; font-size: 1rem; cursor: pointer; margin-top: 15px; transition: 0.3s; }
-        .btn-confirm:hover { background: var(--dark); box-shadow: none; }
+        .btn-confirm { background: #25D366; color: white; width: 100%; padding: 15px; border: none; border-radius: 15px; font-weight: 800; font-size: 1rem; cursor: pointer; margin-top: 15px; transition: 0.3s; }
+        .btn-confirm:hover { background: #1ebd5a; box-shadow: none; }
 
         /* -------------------------------------
            Mobile Adjustments (Responsive UI)
@@ -395,6 +395,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="cart-overlay" onclick="toggleMobileCart()"></div>
@@ -466,7 +467,7 @@
             <div class="invoice-row"><span>توصيل دليفري:</span><span id="delivery-price">0 ج</span></div>
             <div class="invoice-row total-row"><span>الإجمالي النهائي:</span><span id="grand-total">0 ج</span></div>
 
-            <button class="btn-confirm" onclick="sendOrder()">تأكيد الطلب عبر ماسنجر <i class="fa-brands fa-facebook-messenger"></i></button>
+            <button class="btn-confirm" onclick="sendOrder()">تأكيد الطلب عبر واتساب <i class="fa-brands fa-whatsapp"></i></button>
         </div>
     </aside>
 
@@ -760,7 +761,7 @@
             msg += `الطلبات:\n`;
             
             cart.forEach(item => {
-                msg += `- ${item.name} (عدد: ${item.qty}) = ${item.price * item.qty} ج ${item.type ? `(${item.type})` : ''}\n`;
+                msg += `• ${item.name} (عدد: ${item.qty}) = ${item.price * item.qty} ج ${item.type ? `(${item.type})` : ''}\n`;
             });
             
             const foodTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
@@ -769,10 +770,14 @@
 
             msg += `\nحساب الأكل: ${foodTotal} ج\n`;
             msg += `حساب التوصيل: ${delivery} ج\n`;
-            msg += `الإجمالي النهائي المطلوب: ${grandTotal} ج`;
+            msg += `الإجمالي النهائي المطلوب: ${grandTotal} ج\n\n`;
 
-            const url = `https://m.me/61584661411079?text=${encodeURIComponent(msg)}`;
-            window.open(url, '_blank');
+            // واتساب مباشرة على الرقم 01035827265
+            const whatsappNumber = "01035827265";
+            const whatsappUrl = `https://wa.me/201035827265?text=${encodeURIComponent(msg)}`;
+            
+            // افتح واتساب مباشرة
+            window.open(whatsappUrl, '_blank');
         }
 
         // Initial render
